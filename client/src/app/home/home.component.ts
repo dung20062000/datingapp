@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,12 +8,18 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   registerMode = false;
+  users: any;  //bien de nhan du lieu tu component cha
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+  //ham khoi tao der chay component
   ngOnInit(): void{
-
+    this.getUsers();
   }
   registerToggle(){
     this.registerMode = !this.registerMode;
+  }
+  getUsers(){
+    this.http.get('https://localhost:5001/api/users').subscribe(users =>  this.users = users = users);
+
   }
 }

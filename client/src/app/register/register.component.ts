@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-register',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  //su dung input de nhan du lieu tu component home
+  @Input() usersFromHomeComponent: any;
   model: any = {};
 
   constructor () {
