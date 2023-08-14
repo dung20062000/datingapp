@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-register',
@@ -8,6 +8,9 @@ import { Component, Input } from '@angular/core';
 export class RegisterComponent {
   //su dung input de nhan du lieu tu component home
   @Input() usersFromHomeComponent: any;
+
+  //tạo sự kiện mà component cha có thể nghe
+  @Output() cancelRegister = new EventEmitter();
   model: any = {};
 
   constructor () {
@@ -22,7 +25,8 @@ export class RegisterComponent {
     console.log(this.model)
   };
   cancel()  {
-    console.log('cancel');
+    //gọi đến phương thức emit của EventEmitter để xét false đóng model
+    this.cancelRegister.emit(false);
 
   }
 }
