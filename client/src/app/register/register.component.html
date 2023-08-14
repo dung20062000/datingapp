@@ -6,15 +6,6 @@
             [(ngModel)]="model.username" placeholder="User name">
     </div>
 
-    <div class="form-group mt-4">
-        <label> Who is your favourite user ?</label>
-        <select name="" class="form-control" id="">
-            <option *ngFor="let user of usersFromHomeComponent" [value]="user.userName">
-                {{user.userName}}
-            </option>
-        </select>
-    </div>
-
     <div class="form-group my-3">
         <input type="text" class="form-control" name="password" 
             [(ngModel)]="model.password" placeholder="Password">
