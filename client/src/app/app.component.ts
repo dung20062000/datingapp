@@ -19,8 +19,13 @@ export class AppComponent implements OnInit {
   }
 
   setCurrentUser(){
-    const user: User = JSON.parse(localStorage.getItem('user')|| '{}');
-    this.accountService.setCurrentUser(user);
+    //kiểm tra , nấu không có người dùng thì bỏ lưu userCurrent
+    const userString: string | null = localStorage.getItem('user');
+    if(userString !== null)
+      {
+        const user: User = JSON.parse(userString); ///ko co {}
+        this.accountService.setCurrentUser(user);
+      }
   }
   getUsers() {
     this.http.get('https://localhost:5001/api/users').subscribe(response => {

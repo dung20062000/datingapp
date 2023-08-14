@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
+import { Observable } from 'rxjs';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-nav',
@@ -8,31 +10,34 @@ import { AccountService } from '../_services/account.service';
 })
 export class NavComponent implements OnInit {
   model: any = {};
-  loggedIn: boolean = false;
-  constructor(private accuountService: AccountService) {}
+  // loggedIn: boolean = false;
+  // currentUser$: Observable<User> | undefined;
+
+  constructor(public accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.getCurrentUser();
+    // this.getCurrentUser();
+    // this.currentUser$ = this.accountService.currentUser$;
   }
 
   login(){
-    this.accuountService.login(this.model).subscribe(response => {
+    this.accountService.login(this.model).subscribe(response => {
       console.log(response);
-      this.loggedIn = true;
+      // this.loggedIn = true;
     }, (err) => {
       console.log(err);
     })
   }
 
   logout(){
-    this.accuountService.logout();
-    this.loggedIn = false;
+    this.accountService.logout();
+    // this.loggedIn = false;
   }
-  getCurrentUser(){
-    this.accuountService.currentUser$.subscribe(user => {
-      this.loggedIn =!!user;
-    }, err => {
-      console.log(err);
-    });
-  }
+  // getCurrentUser(){
+  //   this.accountService.currentUser$.subscribe(user => {
+  //     this.loggedIn = !!user;
+  //   }, err => {
+  //     console.log(err);
+  //   });
+  // }
 }
