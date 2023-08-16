@@ -25,6 +25,9 @@ namespace DatingApp.Data.Migrations
                     b.Property<string>("City")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
@@ -88,7 +91,7 @@ namespace DatingApp.Data.Migrations
             modelBuilder.Entity("DatingApp.Entities.Photo", b =>
                 {
                     b.HasOne("DatingApp.Entities.AppUser", "AppUser")
-                        .WithMany("MyProperty")
+                        .WithMany("Photos")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -98,7 +101,7 @@ namespace DatingApp.Data.Migrations
 
             modelBuilder.Entity("DatingApp.Entities.AppUser", b =>
                 {
-                    b.Navigation("MyProperty");
+                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }
