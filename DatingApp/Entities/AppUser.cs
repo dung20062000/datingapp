@@ -21,7 +21,7 @@ namespace DatingApp.Entities
         public string Introduction { get; set; }
         public string Interests { get; set; }
         public string City { get; set; }
-        public ICollection<Photo> MyProperty { get; set; } // relationship : 1 person has a photo
+        public ICollection<Photo> Photos { get; set; } // relationship : 1 person has a photo
         public int GetAge()
         {
             return DateOfBirth.CalculateAge(); 

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.Controllers
 {
+    [Authorize]
     public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
@@ -18,7 +19,6 @@ namespace DatingApp.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public async Task <ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
