@@ -1,4 +1,5 @@
-﻿using DatingApp.Entities;
+﻿using AutoMapper;
+using DatingApp.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.Data
@@ -9,5 +10,6 @@ namespace DatingApp.Data
         {
         }
         public DbSet<AppUser> Users { get; set; }
+        public IConfigurationProvider ConfigurationProvider { get; internal set; }
     }
 }

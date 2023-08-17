@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DatingApp.DTOs;
 using DatingApp.Entities;
 using DatingApp.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +14,10 @@ namespace DatingApp.Data
     public class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
-        public UserRepository(DataContext context)
+        private readonly IMapper _mapper;
+        public UserRepository(DataContext context, IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
         }
 
@@ -44,5 +49,51 @@ namespace DatingApp.Data
         {
             _context.Entry(user).State = EntityState.Modified;
         }
+
+        public async Task<MemberDto> GetMemberAsync(string username)
+        {
+            return await _context.Users
+                .Where(x => x.UserName == username)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+        {
+            return await _context.Users
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
+
+        Task<AppUser> IUserRepository.GetUserByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<AppUser> IUserRepository.GetUserByUsernameAsync(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<AppUser>> IUserRepository.GetUsersAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IUserRepository.SaveAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IUserRepository.Update(AppUser user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<MemberDto>> GetMemberDtoAsync()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
