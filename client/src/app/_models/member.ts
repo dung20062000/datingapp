@@ -1,6 +1,6 @@
 import { Photo } from './photo';
 
-export type Root = Member[];
+// export type Root = Member[];
 
 export interface Member {
   id: number;
