@@ -30,13 +30,13 @@ export class MembersService {
   }
 
   getMembers(): Observable<Member[]> {
-    const httpOptions = this.getHttpOptions();
-    return this.http.get<Member[]>(this.baseUrl+'users', httpOptions);
+    //const httpOptions = this.getHttpOptions();
+    return this.http.get<Member[]>(this.baseUrl+'users');
   }
 
   getMember (username: string) {
-    const httpOptions = this.getHttpOptions();
-    return this.http.get<Member>(this.baseUrl+ 'users/' + username, httpOptions)
+    //const httpOptions = this.getHttpOptions();
+    return this.http.get<Member>(this.baseUrl+ 'users/' + username);
   }
 
 }
