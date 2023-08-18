@@ -6,30 +6,31 @@ import { MembersService } from 'src/app/_services/members.service';
 @Component({
   selector: 'app-member-detail',
   templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.css']
+  styleUrls: ['./member-detail.component.css'],
 })
 export class MemberDetailComponent {
-  member: Member | undefined;
+  member?: Member;
 
-  constructor(private memberService: MembersService,private route: ActivatedRoute) {
-
-  }
+  constructor(
+    private memberService: MembersService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.loadMember();
-  };
+  }
 
   loadMember() {
     const username = this.route.snapshot.paramMap.get('username');
     if (username !== null) {
-      this.memberService.getMember(username).subscribe(member => {
+      this.memberService.getMember(username).subscribe((member) => {
         this.member = member;
       });
     } else {
       // Xử lý trường hợp không có giá trị 'username'
       // Ví dụ: throw một lỗi, thông báo người dùng, hoặc thực hiện hành động khác.
-      alert("No username provided. Please provide a valid username.");
+      alert('No username provided. Please provide a valid username.');
     }
+
   }
 }
- 
