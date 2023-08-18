@@ -9,6 +9,7 @@ import { AuthGuard } from './_guard/auth.guard';
 import { TestsErrorsComponent } from './errors/tests-errors/tests-errors.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -18,8 +19,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children:
     [
-      {path: 'members', component: MemberListComponent, canActivate: [AuthGuard]},
+      {path: 'members', component: MemberListComponent},
       {path: 'members/:username', component: MemberDetailComponent},
+      {path: 'member/edit', component: MemberEditComponent},
       {path: 'lists', component: ListsComponent},
       {path: 'messages', component: MessagesComponent},
     ]
