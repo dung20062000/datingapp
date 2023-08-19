@@ -6,8 +6,10 @@ using AutoMapper;
 using DatingApp.Data;
 using DatingApp.DTOs;
 using DatingApp.Entities;
+using DatingApp.Extensions;
 using DatingApp.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,10 +20,15 @@ namespace DatingApp.Controllers
     {
         public readonly IUserRepository _userRepository;
         public readonly IMapper _mapper;
-        public UsersController(IUserRepository userRepository, IMapper mapper)
+        public readonly IPhotoService _photoService;
+        public UsersController(IUserRepository userRepository, 
+                                IMapper mapper,
+                                IPhotoService photoService
+                                )
         {
             _mapper = mapper;
             _userRepository = userRepository;
+            _photoService = photoService;
         }
 
         [HttpGet]
@@ -43,14 +50,46 @@ namespace DatingApp.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
-            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var user = await _userRepository.GetUserByUsernameAsync(username);
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
 
             _mapper.Map(memberUpdateDto, user);
 
             _userRepository.Update(user);
             if(await _userRepository.SaveAllAsync()) return NoContent();
             return BadRequest("Failed to update user");
+        }
+
+        [HttpPost("add-photo")]
+        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
+        {   
+            //lấy người dùng
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            //nhận kết quả ảnh và kiểm tra nó
+            var result = await _photoService.AddPhotoAsync(file);
+            
+            if(result.Error != null ) return BadRequest(result.Error.Message);
+
+            //tạo 1 ảnh mới nếu vượt qua các bước
+            var photo = new Photo
+            {
+                Url = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId
+            };
+
+            //kiểm tra neus chưa có ảnh thì đặt nó là ảnh đại diện
+            if(user.Photos.Count == 0) 
+            {
+                photo.IsMain = true;
+            }
+
+            //lưu ảnh lại và trả về request
+            user.Photos.Add(photo);
+            if(await _userRepository.SaveAllAsync())
+            {
+                return _mapper.Map<PhotoDto>(photo);
+            }
+            return BadRequest("Problem adding photo");
         }
     }
 }
