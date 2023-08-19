@@ -38,6 +38,9 @@ export class MembersService {
     //const httpOptions = this.getHttpOptions();
     return this.http.get<Member>(this.baseUrl+ 'users/' + username);
   }
+  updateMember(member : Member) {
+    return this.http.put(this.baseUrl+'users',member);
+  }
 
 }
- 
+  
