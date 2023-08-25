@@ -64,7 +64,7 @@ namespace DatingApp.Data
             var query = _context.Users
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .AsNoTracking();
-            return await PagedList<MemberDto>.CreateAsync(query, userParams.PageNumber,userParams.PageSize);
+            return await PagedList<MemberDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
 
         }
     }
