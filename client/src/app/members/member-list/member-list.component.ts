@@ -26,5 +26,10 @@ export class MemberListComponent {
 
     })
   }
+  //đổi trang
+  pageChanged(event: any){  //khai báo hàm pageChanged với tham số event kiểu any
+    this.pageNumber = event.page; // gán giá trị của thuộc tính page trong đối tượng event vào thuộc tính pageNumber
+    this.loadMembers(); //tải danh sách thành viên hoặc dữ liệu 
+  }
 }
  
