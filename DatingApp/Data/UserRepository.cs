@@ -65,6 +65,12 @@ namespace DatingApp.Data
 
             query = query.Where(x => x.UserName != userParams.CurrentUsername);
             query = query.Where(x => x.Gender == userParams.Gender);
+
+            var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+            var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
+
+            query = query.Where(x => x.DateOfBirth >= minDob && x.DateOfBirth <= maxDob);
+
             return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .AsNoTracking(), userParams.PageNumber, userParams.PageSize);
 
