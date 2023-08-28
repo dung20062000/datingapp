@@ -17,5 +17,17 @@ namespace DatingApp.Extensions
         {
             return int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         }
+        // public static int GetUserId(this ClaimsPrincipal user)
+        // {
+        //     var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+
+        //     if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+        //     {
+        //         return userId;
+        //     }
+
+        //     // Return a default or error value here, as appropriate for your application
+        //     throw new InvalidOperationException("User ID claim is missing or invalid.");
+        // }
     }
 }
