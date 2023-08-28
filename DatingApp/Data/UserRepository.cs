@@ -71,6 +71,12 @@ namespace DatingApp.Data
 
             query = query.Where(x => x.DateOfBirth >= minDob && x.DateOfBirth <= maxDob);
 
+            query = userParams.OderBy switch
+            {
+                "created" =>query.OrderByDescending(u => u.Created),
+                _ => query.OrderByDescending(u => u.LastActive)
+            } ;
+
             return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .AsNoTracking(), userParams.PageNumber, userParams.PageSize);
 
