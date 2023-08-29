@@ -24,9 +24,8 @@ namespace DatingApp.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; } // relationship : 1 person has a photo
-        // public int GetAge()
-        // {
-        //     return DateOfBirth.CalculateAge(); 
-        // }
+        public ICollection<UserLike> LikedByUsers { get; set; }
+        public ICollection<UserLike> LikedUsers { get; set; }
+        
     }
 }
