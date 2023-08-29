@@ -26,6 +26,8 @@ namespace DatingApp.Entities
         public ICollection<Photo> Photos { get; set; } // relationship : 1 person has a photo
         public ICollection<UserLike> LikedByUsers { get; set; }
         public ICollection<UserLike> LikedUsers { get; set; }
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
         
     }
 }
