@@ -2,32 +2,33 @@
   <h2>Your matches - {{pagination?.totalItems}} found</h2>
 </div>
 
-<div class="container mt-3">
-  <form #form="ngForm" class="form-group px-2 d-flex align-items-center" (ngSubmit)="loadMembers()" autocomplete="off">
-    <div class="form-group px-2">
-      <label >Age form: </label>
+<div class="container mt-3" *ngIf="userParams">
+  <form #form="ngForm" class="d-flex mb-3" (ngSubmit)="loadMembers()" autocomplete="off">
+    <div class="d-flex mx-2">
+      <label class="col-form-label">Age from: </label>
       <input 
-        type="number" 
-        class="form-control ml-1" 
-        style="width: 70px;" name="minAge" 
-        [(ngModel)]="userParams.minAge">
-    </div>
-
-    <div class="form-group px-2">
-      <label >Age to: </label>
+          type="number" 
+          class="form-control ms-1" 
+          style="width: 70px" 
+          name="minAge" 
+          [(ngModel)]="userParams.minAge">
+  </div>
+  <div class="d-flex mx-2">
+      <label class="col-form-label">Age to: </label>
       <input 
-        type="number" 
-        class="form-control ml-1" 
-        style="width: 70px;" name="maxAge" 
-        [(ngModel)]="userParams.maxAge">
-    </div>
+          type="number" 
+          class="form-control ms-1" 
+          style="width: 70px" 
+          name="maxAge" 
+          [(ngModel)]="userParams.maxAge">
+  </div>
 
-    <div class="form-group px-2 d-flex align-items-center">
-      <label class="">Show: </label>
+    <div class="d-flex px-2">
+      <label class="col-form-label me-2">Show: </label>
       <select 
         name="gender"
         [(ngModel)]="userParams.gender" 
-        class="form-control ml-1"
+        class="form-select ms-1"
         style="width: 130px;"
         id=""
       >
@@ -36,11 +37,11 @@
         </option>
       </select>
     </div>
-    <button class="btn btn-info px-2 my-3" type="submit">Apply Filters</button>
-    <button (click)="resetFilter()" class="btn btn-warning mx-1" type="submit">Reset Filter</button>
+    <button class="btn btn-info ms-1" type="submit">Apply Filters</button>
+    <button (click)="resetFilter()" class="btn btn-warning ms-1" type="submit">Reset Filter</button>
 
     <div class="col">
-      <div class="btn-group float-right">
+      <div class="btn-group float-end">
         <button 
           type="button"
           class="btn btn-primary" 

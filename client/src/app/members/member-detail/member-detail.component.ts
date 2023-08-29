@@ -54,17 +54,23 @@ export class MemberDetailComponent {
   }
 
   loadMember() {
-    const username = this.route.snapshot.paramMap.get('username');
-    if (username !== null) {
-      this.memberService.getMember(username).subscribe((member) => {
-        this.member = member;
-        this.galleryImages= this.getImages();
-      });
-    } else {
-      // Xử lý trường hợp không có giá trị 'username'
-      // Ví dụ: throw một lỗi, thông báo người dùng, hoặc thực hiện hành động khác.
-      alert('No username provided. Please provide a valid username.');
-    }
+    // const username = this.route.snapshot.paramMap.get('username');
+    // if (username !== null) {
+    //   this.memberService.getMember(username).subscribe((member) => {
+    //     this.member = member;
+    //     this.galleryImages= this.getImages();
+    //   });
+    // } else {
+    //   // Xử lý trường hợp không có giá trị 'username'
+    //   // Ví dụ: throw một lỗi, thông báo người dùng, hoặc thực hiện hành động khác.
+    //   alert('No username provided. Please provide a valid username.');
+    // }
+
+
+    this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe((member) => {
+    this.member = member;
+    this.galleryImages= this.getImages();
+    });
 
   }
 }

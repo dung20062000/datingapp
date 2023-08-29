@@ -36,8 +36,8 @@ export class MembersService {
 
     return this.getPaginatedResult<Member[]>(this.baseUrl + 'users', params)
       .pipe(map( response => {
-        this.memberCache.set(Object.values(userParams).join(''), response);
-        return response
+        this.memberCache.set(Object.values(userParams).join('-'), response);
+        return response;
       }))
   }
 
@@ -56,10 +56,17 @@ export class MembersService {
 
 
   getMember(username: string) {
-    const member = this.members.find((x) => x.username === username);
-    if (member !== undefined) return of(member);
+
+    const member = [...this.memberCache.values()]
+      .reduce((arr, elem) => arr.concat(elem.result), [])
+      .find((member: Member) => member.username === username);
+    if(member){
+      return of(member);
+    }
+    console.log(member);
     return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
+
   updateMember(member: Member) {
     return this.http.put(this.baseUrl + 'users', member).pipe(
       map(() => {
@@ -86,7 +93,7 @@ export class MembersService {
         .get<T>(url, { observe: 'response', params })
         .pipe(
           map((response) => {
-            paginatedResult.results = response.body;
+            paginatedResult.result = response.body;
             if (response.headers.get('Pagination') !== null) {
               paginatedResult.pagination = JSON.parse(
                 response.headers.get('Pagination')

@@ -32,7 +32,7 @@ export class MemberListComponent {
   }
   loadMembers() {
     this.memberService.getMembers(this.userParams).subscribe(response =>{
-      this.members = response.results;
+      this.members = response.result;
       this.pagination = response.pagination;
 
     })
