@@ -9,7 +9,7 @@ import { MessageService } from '../_services/message.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent {
-  messages: Message[];
+  messages: Message[] = [];
   pagination: Pagination;
   container='Outbox';
   pageNumber = 1;
