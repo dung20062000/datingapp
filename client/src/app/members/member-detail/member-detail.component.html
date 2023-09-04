@@ -56,7 +56,7 @@
             </tab>
             <tab heading='Messages' (selectTab)="onTabActivated($event)">
                 <!-- <app-member-message [messages]="messages"></app-member-message> -->
-                <app-member-message *ngIf="messages" [messages]="messages"></app-member-message>
+                <app-member-message *ngIf="messages" [messages]="messages" [username]="member.username"></app-member-message>
             </tab>
         </tabset>
         
