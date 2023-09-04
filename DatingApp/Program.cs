@@ -22,8 +22,9 @@ namespace DatingApp
             {
                 var context = services.GetRequiredService<DataContext>();
                 var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                 await context.Database.MigrateAsync();
-                await Seed.SeedUser(userManager);
+                await Seed.SeedUser(userManager, roleManager);
 
             }
             catch(Exception ex)
