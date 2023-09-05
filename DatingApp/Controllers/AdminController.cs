@@ -47,7 +47,7 @@ namespace DatingApp.Controllers
 
             var userRoles = await _userManager.GetRolesAsync(user);
 
-            var result = await _userManager.AddToRoleAsync(user, selectedRoles.Except(userRoles).FirstOrDefault()); /// Sử dụng .FirstOrDefault() để chọn một phần tử đầu tiên trong danh sách (nếu có)
+            var result = await _userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
 
             if(!result.Succeeded) return BadRequest("Failed to add to role");
 
