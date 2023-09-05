@@ -27,6 +27,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { MemberMessageComponent } from './members/member-message/member-message.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MemberMessageComponent } from './members/member-message/member-message.
     TextInputComponent,
     DateInputComponent,
     MemberMessageComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,

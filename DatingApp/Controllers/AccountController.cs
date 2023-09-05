@@ -77,6 +77,7 @@ namespace DatingApp.Controllers
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain )?.Url,
                 KnownAs = user.KnownAs,
                 Gender = user.Gender
+                
             };
         }
         private async Task<bool> UserExists(string username)
