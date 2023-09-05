@@ -31,6 +31,7 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HasRileDirective } from './_directives/has-rile.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import { RoleModalComponent } from './modals/role-modal/role-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { PhotoManagementComponent } from './admin/photo-management/photo-managem
     HasRileDirective,
     UserManagementComponent,
     PhotoManagementComponent,
+    RoleModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +79,6 @@ import { PhotoManagementComponent } from './admin/photo-management/photo-managem
     provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
   }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
