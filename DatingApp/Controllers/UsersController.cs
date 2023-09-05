@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using CloudinaryDotNet.Actions;
 using DatingApp.Data;
 using DatingApp.DTOs;
 using DatingApp.Entities;
@@ -47,7 +48,7 @@ namespace DatingApp.Controllers
             return Ok(users);
 
         }
-        [Authorize]
+
         // api/users/3  link api
         [HttpGet("{username}", Name ="GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
