@@ -28,6 +28,7 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { MemberMessageComponent } from './members/member-message/member-message.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HasRileDirective } from './_directives/has-rile.directive';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
     DateInputComponent,
     MemberMessageComponent,
     AdminPanelComponent,
+    HasRileDirective,
   ],
   imports: [
     BrowserModule,
