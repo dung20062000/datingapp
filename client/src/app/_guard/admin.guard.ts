@@ -22,7 +22,7 @@ export class AdminGuard implements CanActivate {
     return this.accountService.currentUser$.pipe(
       map((user) => {
         if (!user) return false;
-        console.log(user);
+        // console.log(user);
         if (user.roles.includes('Admin') || user.roles.includes('Moderator')) {
           return true;
         } else {

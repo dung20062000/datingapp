@@ -29,6 +29,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { MemberMessageComponent } from './members/member-message/member-message.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HasRileDirective } from './_directives/has-rile.directive';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { HasRileDirective } from './_directives/has-rile.directive';
     MemberMessageComponent,
     AdminPanelComponent,
     HasRileDirective,
+    UserManagementComponent,
+    PhotoManagementComponent,
   ],
   imports: [
     BrowserModule,
